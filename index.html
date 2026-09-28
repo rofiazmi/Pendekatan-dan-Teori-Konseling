@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Counseling Myth or Fact — Basic Counseling Skills Edition</title>
+<style>
+  :root{
+    --bg:#0c1020;--card:#151a31;--muted:#9da7c4;--text:#f7f8ff;--accent:#8b5cf6;--accent2:#22d3ee;--good:#22c55e;--bad:#ef4444;--line:#2b3154;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:radial-gradient(circle at 10% 10%,rgba(139,92,246,.22),transparent 26%),radial-gradient(circle at 90% 0%,rgba(34,211,238,.14),transparent 28%),var(--bg);color:var(--text);min-height:100vh}
+  .wrap{max-width:980px;margin:auto;padding:28px 18px 60px}
+  .hero{display:flex;gap:18px;align-items:flex-start;justify-content:space-between;margin-bottom:20px}
+  .brand h1{font-size:clamp(28px,5vw,48px);line-height:1.02;margin:0 0 8px;letter-spacing:-1.5px}
+  .brand p{margin:0;color:var(--muted);font-size:15px}
+  .pill{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(139,92,246,.45);background:rgba(139,92,246,.13);padding:8px 12px;border-radius:999px;font-weight:700;font-size:12px;color:#ddd6fe;margin-bottom:12px}
+  .card{background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.08);border-radius:22px;padding:20px;box-shadow:0 18px 55px rgba(0,0,0,.25);backdrop-filter:blur(12px)}
+  .start-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}
+  @media(max-width:760px){.start-grid{grid-template-columns:1fr}.hero{flex-direction:column}.stats{width:100%}}
+  label{display:block;font-size:13px;color:var(--muted);margin:0 0 7px}
+  input{width:100%;padding:14px 15px;border-radius:14px;border:1px solid var(--line);background:#0f1430;color:var(--text);font-size:15px;outline:none}
+  input:focus{border-color:var(--accent)}
+  .field{margin-bottom:14px}
+  button{border:0;border-radius:14px;padding:14px 18px;font-weight:800;font-size:15px;cursor:pointer;transition:.18s}
+  button:hover{transform:translateY(-1px)}
+  .primary{background:linear-gradient(135deg,var(--accent),#6d28d9);color:white;width:100%}
+  .ghost{background:#12172b;color:#e6e9ff;border:1px solid var(--line)}
+  .choice-wrap{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}
+  .choice{min-height:82px;font-size:18px;background:#11172c;color:#fff;border:1px solid var(--line)}
+  .choice:hover{border-color:#6d73a6}
+  .choice.fact{box-shadow:inset 0 0 0 1px rgba(34,211,238,.18)}
+  .choice.myth{box-shadow:inset 0 0 0 1px rgba(139,92,246,.18)}
+  .topbar{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;margin-bottom:14px}
+  .progress{height:10px;background:#11162a;border-radius:999px;overflow:hidden;border:1px solid var(--line)}
+  .progress>div{height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:.35s}
+  .meta{display:flex;gap:10px;flex-wrap:wrap;color:var(--muted);font-size:13px;margin-top:10px}
+  .meta b{color:#fff}
+  .statement{font-size:clamp(24px,4vw,36px);line-height:1.22;font-weight:850;letter-spacing:-.7px;margin:18px 0 8px}
+  .round{color:#c4b5fd;font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.12em}
+  .feedback{margin-top:18px;padding:16px;border-radius:16px;border:1px solid var(--line);display:none}
+  .feedback.good{display:block;background:rgba(34,197,94,.08);border-color:rgba(34,197,94,.35)}
+  .feedback.bad{display:block;background:rgba(239,68,68,.08);border-color:rgba(239,68,68,.35)}
+  .feedback h3{margin:0 0 8px}
+  .feedback p{margin:0;color:#d9def4;line-height:1.6}
+  .next{margin-top:14px;width:100%}
+  .hidden{display:none!important}
+  .mini{font-size:13px;color:var(--muted);line-height:1.6}
+  .stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;min-width:260px}
+  .stat{background:#11162a;border:1px solid var(--line);border-radius:16px;padding:14px}
+  .stat span{display:block;color:var(--muted);font-size:12px}
+  .stat strong{display:block;font-size:24px;margin-top:2px}
+  .result-score{font-size:64px;font-weight:900;letter-spacing:-3px;margin:10px 0 4px}
+  .result-sub{color:var(--muted);margin-bottom:18px}
+  .breakdown{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:16px 0}
+  .breakdown .stat{background:#0f1430}
+  .footer{margin-top:22px;font-size:12px;color:#737d9f;line-height:1.6}
+  .tag{display:inline-block;padding:5px 9px;border-radius:999px;background:#11172c;border:1px solid var(--line);font-size:11px;color:#c8cfee;margin-right:6px;margin-top:6px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="hero">
+    <div class="brand">
+      <div class="pill">COUNSELING MYTH OR FACT</div>
+      <h1>Basic Counseling Skills Edition</h1>
+      <p>50 pernyataan. Pilih Mitos atau Fakta. Tanpa login, tanpa identitas, langsung main.</p>
+    </div>
+    <div class="stats">
+      <div class="stat"><span>Total Item</span><strong>50</strong></div>
+      <div class="stat"><span>Max XP</span><strong>1000</strong></div>
+    </div>
+  </div>
+
+  <section id="startScreen" class="start-grid">
+    <div class="card">
+      <div class="round">Counselor in Training</div>
+      <h2 style="margin:8px 0 12px">Siap jadi Counseling Myth Buster?</h2>
+      <p class="mini">Game ini membahas keterampilan dasar konseling individual dan kelompok: attending, rapport, empati, respons verbal, action skills, mind skills, serta kepemimpinan kelompok.</p>
+      <button class="primary" onclick="startGame()" style="margin-top:12px">Mulai Game</button>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">Cara main</h3>
+      <p class="mini">Setiap item hanya punya dua pilihan: <b>MITOS</b> atau <b>FAKTA</b>. Setelah menjawab, kamu langsung mendapat penjelasan singkat. Jawaban benar bernilai 20 XP.</p>
+      <span class="tag">5 Round</span><span class="tag">Instant Feedback</span><span class="tag">Streak</span><span class="tag">Result Summary</span>
+      <div class="footer">Mode anonim: tidak ada nama, NIM, login, database, atau pengiriman data ke server. Game berjalan langsung di browser.</div>
+    </div>
+  </section>
+
+  <section id="gameScreen" class="card hidden">
+    <div class="topbar">
+      <div>
+        <div class="progress"><div id="bar"></div></div>
+        <div class="meta"><span>Item <b id="num">1</b>/50</span><span>XP <b id="xp">0</b></span><span>Streak <b id="streak">0</b></span></div>
+      </div>
+      <button class="ghost" onclick="restartGame()">Reset</button>
+    </div>
+    <div id="round" class="round"></div>
+    <div id="statement" class="statement"></div>
+    <div class="choice-wrap">
+      <button id="mythBtn" class="choice myth" onclick="answer(false)">MITOS</button>
+      <button id="factBtn" class="choice fact" onclick="answer(true)">FAKTA</button>
+    </div>
+    <div id="feedback" class="feedback">
+      <h3 id="feedbackTitle"></h3>
+      <p id="feedbackText"></p>
+      <button id="nextBtn" class="primary next" onclick="nextQuestion()">Lanjut</button>
+    </div>
+  </section>
+
+  <section id="resultScreen" class="card hidden">
+    <div class="round">Mission Complete</div>
+    <h2 style="margin:8px 0 0">COUNSELING MYTH BUSTER</h2>
+    <div id="finalXp" class="result-score">0</div>
+    <div class="result-sub">XP dari 1000</div>
+    <div class="breakdown">
+      <div class="stat"><span>Akurasi</span><strong id="accuracy">0%</strong></div>
+      <div class="stat"><span>Jawaban Benar</span><strong id="correct">0/50</strong></div>
+      <div class="stat"><span>Best Area</span><strong id="bestArea" style="font-size:17px"></strong></div>
+      <div class="stat"><span>Need Review</span><strong id="reviewArea" style="font-size:17px"></strong></div>
+    </div>
+    <button class="primary" onclick="copyResult()">Salin Hasil</button>
+    <button class="ghost" style="width:100%;margin-top:10px" onclick="restartGame()">Main Lagi</button>
+  </section>
+</div>
+
+<script>
+const questions = [
+{r:'Round 1 — Basic Counseling Skills',s:'Attending hanya berkaitan dengan kontak mata konselor.',a:false,e:'Attending lebih luas daripada kontak mata. Ia mencakup perhatian terhadap perilaku verbal dan nonverbal, postur, ekspresi, serta cara konselor menyelaraskan diri dengan pengalaman konseli.'},
+{r:'Round 1 — Basic Counseling Skills',s:'Rapport merupakan salah satu fondasi awal hubungan konseling.',a:true,e:'Rapport membantu konseli merasakan minat dan penerimaan yang tulus, sehingga menjadi dasar penting pada tahap awal konseling.'},
+{r:'Round 1 — Basic Counseling Skills',s:'Konselor yang baik sebaiknya langsung memberi solusi agar konseli merasa terbantu.',a:false,e:'Pada tahap awal, konselor perlu lebih dulu membangun hubungan, memahami konseli, dan menggunakan keterampilan memahami sebelum bergerak pada keterampilan tindakan.'},
+{r:'Round 1 — Basic Counseling Skills',s:'Lingkungan fisik seperti posisi duduk dan privasi dapat memengaruhi kenyamanan konseli.',a:true,e:'Jarak duduk, pengaturan ruang, pencahayaan, serta privasi auditori dan visual dapat memengaruhi rasa nyaman konseli untuk terbuka.'},
+{r:'Round 1 — Basic Counseling Skills',s:'Door opener bertujuan mendorong konseli mulai bercerita tanpa merasa dihakimi.',a:true,e:'Door opener adalah undangan yang tidak menghakimi agar konseli mulai bercerita.'},
+{r:'Round 1 — Basic Counseling Skills',s:'Door closer dapat menghambat keterbukaan konseli.',a:true,e:'Respons yang evaluatif dapat menjadi door closer dan menghambat konseli untuk terbuka.'},
+{r:'Round 1 — Basic Counseling Skills',s:'Konselor cukup memperhatikan isi verbal karena ekspresi nonverbal kurang penting.',a:false,e:'Ekspresi wajah, nada suara, dan perilaku nonverbal dapat memberi informasi yang sama pentingnya, bahkan terkadang lebih kuat daripada isi ucapan.'},
+{r:'Round 1 — Basic Counseling Skills',s:'Keterampilan konseling dapat dilatih secara sistematis melalui microskills.',a:true,e:'Pendekatan microskills memecah keterampilan inti konseling menjadi perilaku yang dapat dipelajari dan dilatih secara sistematis.'},
+{r:'Round 1 — Basic Counseling Skills',s:'Menguasai teknik saja sudah cukup untuk menjadikan seseorang konselor efektif.',a:false,e:'Kualitas pribadi, kesadaran diri, keyakinan, kemampuan konseptual, dan kehadiran konselor juga penting; bukan teknik semata.'},
+{r:'Round 1 — Basic Counseling Skills',s:'Keaslian dan kehadiran konselor sama pentingnya dengan teknik.',a:true,e:'Genuineness dan presence dipandang sebagai kualitas penting yang melengkapi penguasaan keterampilan teknis.'},
+
+{r:'Round 2 — Empathy & Responding',s:'Empati berarti konselor harus ikut merasakan persis seperti konseli.',a:false,e:'Empati berarti memasuki dunia fenomenal konseli seolah-olah menjadi dunianya, tanpa kehilangan kualitas “seolah-olah” tersebut.'},
+{r:'Round 2 — Empathy & Responding',s:'Konselor perlu memahami dunia konseli tanpa kehilangan posisi dirinya sendiri.',a:true,e:'Empati menuntut pemahaman terhadap dunia subjektif konseli tanpa konselor kehilangan jati dirinya.'},
+{r:'Round 2 — Empathy & Responding',s:'Empati hanya merupakan keterampilan verbal.',a:false,e:'Empati mencakup kemampuan mempersepsi kerangka acuan konseli dan mengomunikasikan pemahaman itu secara jelas; ia juga terkait sikap batin konselor.'},
+{r:'Round 2 — Empathy & Responding',s:'Empati primer umumnya digunakan untuk membantu konseli merasa dipahami pada tahap awal.',a:true,e:'Empati primer membantu konseli merasa tema utama permasalahannya dipahami, terutama pada wawancara awal.'},
+{r:'Round 2 — Empathy & Responding',s:'Advanced empathy dapat membantu mengeksplorasi tema yang belum sepenuhnya disadari konseli.',a:true,e:'Empati lanjut digunakan pada tahap kerja untuk membantu mengeksplorasi tema, isu, dan emosi yang belum sepenuhnya disadari.'},
+{r:'Round 2 — Empathy & Responding',s:'Pertanyaan terbuka memberi ruang lebih besar bagi konseli untuk bercerita.',a:true,e:'Pertanyaan terbuka memberi keleluasaan lebih besar bagi konseli untuk menjelaskan pengalaman secara lebih panjang.'},
+{r:'Round 2 — Empathy & Responding',s:'Pertanyaan tertutup selalu buruk dalam konseling.',a:false,e:'Pertanyaan tertutup tetap dapat digunakan untuk memperoleh informasi singkat; penggunaannya bergantung pada tujuan wawancara.'},
+{r:'Round 2 — Empathy & Responding',s:'Restatement berarti konselor mengulang semua perkataan konseli kata demi kata.',a:false,e:'Restatement adalah menyusun kembali pernyataan konseli dengan kata-kata konselor sendiri tanpa mengubah inti makna.'},
+{r:'Round 2 — Empathy & Responding',s:'Refleksi perasaan bertujuan menangkap dan mengomunikasikan kembali pengalaman emosional konseli.',a:true,e:'Refleksi perasaan merespons inti perasaan yang dikomunikasikan konseli melalui pesan verbal maupun nonverbal.'},
+{r:'Round 2 — Empathy & Responding',s:'Klarifikasi digunakan ketika konselor ingin memastikan pemahamannya terhadap pernyataan konseli.',a:true,e:'Klarifikasi digunakan untuk memperjelas bagian pesan yang membingungkan dan memastikan pemahaman konselor.'},
+
+{r:'Round 3 — Action Skills',s:'Action skills biasanya digunakan setelah hubungan konseling mulai terbentuk.',a:true,e:'Keterampilan tindakan digunakan setelah hubungan konseling terbentuk untuk membantu konseli bergerak menuju perubahan.'},
+{r:'Round 3 — Action Skills',s:'Reframing berarti menyangkal masalah konseli dan menggantinya dengan pikiran positif.',a:false,e:'Reframing menawarkan sudut pandang lain yang lebih fungsional terhadap situasi; bukan menyangkal pengalaman konseli.'},
+{r:'Round 3 — Action Skills',s:'Reframing dapat membantu konseli melihat situasi dari perspektif lain.',a:true,e:'Reframing membantu mengubah cara pandang yang kaku dengan menawarkan perspektif alternatif yang lebih fungsional.'},
+{r:'Round 3 — Action Skills',s:'Leading berarti konselor menentukan seluruh keputusan hidup konseli.',a:false,e:'Leading adalah pengarahan persuasif yang proporsional agar konseli bergerak ke arah yang tepat, bukan mengambil alih seluruh keputusan.'},
+{r:'Round 3 — Action Skills',s:'Arahan konselor yang terlalu cepat atau terlalu kuat dapat merugikan proses konseling.',a:true,e:'Arahan yang terlalu jauh di depan atau terlalu tertinggal dari kesiapan konseli sama-sama dapat merugikan hubungan konseling.'},
+{r:'Round 3 — Action Skills',s:'Konfrontasi dalam konseling sama dengan memarahi konseli.',a:false,e:'Konfrontasi bukan serangan pribadi. Ia mengundang dialog agar konseli memeriksa ketidaksesuaian antara ucapan dan tindakan.'},
+{r:'Round 3 — Action Skills',s:'Konfrontasi dapat digunakan untuk membantu konseli melihat ketidaksesuaian antara ucapan dan tindakannya.',a:true,e:'Konfrontasi membantu konseli memeriksa kesenjangan antara pernyataan dan tindakan yang nyata.'},
+{r:'Round 3 — Action Skills',s:'Konfrontasi sebaiknya digunakan tanpa mempertimbangkan kesiapan konseli.',a:false,e:'Konfrontasi membutuhkan timing dan kesiapan konseli; arahan maksimal seperti ini lebih tepat setelah hubungan yang kokoh terbentuk.'},
+{r:'Round 3 — Action Skills',s:'Immediacy membahas apa yang sedang terjadi dalam hubungan konselor-konseli saat itu.',a:true,e:'Immediacy berfokus pada apa yang tengah terjadi di antara konselor dan konseli saat itu, termasuk perasaan, kesan, dan harapan.'},
+{r:'Round 3 — Action Skills',s:'Kontrak konseling dapat membantu konselor dan konseli memperjelas tujuan serta langkah tindakan.',a:true,e:'Kontrak memberi catatan tertulis atas tujuan dan langkah yang disepakati, sekaligus dapat berfungsi sebagai motivator.'},
+
+{r:'Round 4 — Mind Skills',s:'Proses berpikir internal konselor tidak memengaruhi kualitas respons konseling.',a:false,e:'Mind skills justru memengaruhi bagaimana tindakan dipilih, ditata waktunya, dan disampaikan.'},
+{r:'Round 4 — Mind Skills',s:'Self-talk konselor dapat memengaruhi bagaimana ia merespons konseli.',a:true,e:'Kesadaran dan pengelolaan percakapan batin merupakan bagian penting dari self-talk konselor.'},
+{r:'Round 4 — Mind Skills',s:'Konselor ideal tidak boleh memiliki pikiran atau perasaan pribadi selama sesi.',a:false,e:'Konselor perlu menyadari nilai, pikiran, dan perasaannya sendiri agar dapat bersikap jujur, kongruen, dan responsif.'},
+{r:'Round 4 — Mind Skills',s:'Kesadaran diri merupakan bagian penting dalam kesiapan pribadi konselor.',a:true,e:'Self-awareness disebut sebagai salah satu karakteristik penting yang mendukung kejujuran, kongruensi, dan komunikasi konselor.'},
+{r:'Round 4 — Mind Skills',s:'Keyakinan seperti “konselor harus selalu disukai konseli” dapat memengaruhi keputusan konselor.',a:true,e:'Aturan pribadi dan harapan yang kaku dapat memengaruhi kesiapan konselor menggunakan intervensi tertentu.'},
+{r:'Round 4 — Mind Skills',s:'Persepsi konselor terhadap pengalaman konseli perlu diperiksa agar respons tidak terlalu cepat.',a:true,e:'Persepsi yang akurat menjadi prasyarat sebelum konselor memilih keterampilan tindakan yang tepat.'},
+{r:'Round 4 — Mind Skills',s:'Konselor harus selalu yakin 100% terhadap interpretasinya tentang konseli.',a:false,e:'Dalam konseling, penjelasan atau interpretasi perlu disampaikan secara fleksibel dan tentatif, bukan kaku atau dogmatis.'},
+{r:'Round 4 — Mind Skills',s:'Atribusi yang fleksibel dapat membantu konselor melihat perilaku konseli dari berbagai kemungkinan.',a:true,e:'Konselor perlu mampu menjelaskan atau mengatribusikan peristiwa secara fleksibel dan tepat waktu.'},
+{r:'Round 4 — Mind Skills',s:'Mind skills yang tidak adaptif dapat membuat konselor terlalu cepat atau justru menghindari intervensi yang diperlukan.',a:true,e:'Mind skills yang tidak adaptif dapat membuat konselor menghindari konfrontasi yang diperlukan atau bertindak prematur sebelum konseli siap.'},
+{r:'Round 4 — Mind Skills',s:'Ketepatan timing suatu intervensi tidak berkaitan dengan kesiapan internal konselor.',a:false,e:'Timing intervensi sangat dipengaruhi kesiapan internal konselor, kemampuan teknik, dan kepekaan terhadap kesiapan konseli.'},
+
+{r:'Round 5 — Group Counseling',s:'Keterampilan konseling kelompok sepenuhnya berbeda dari konseling individual.',a:false,e:'Banyak keterampilan kelompok merupakan perluasan dari keterampilan individual, seperti active listening, restating, clarifying, reflecting feelings, dan empathizing.'},
+{r:'Round 5 — Group Counseling',s:'Mendengarkan aktif, klarifikasi, refleksi, dan empati juga digunakan dalam konseling kelompok.',a:true,e:'Keterampilan tersebut tetap digunakan dalam kelompok, tetapi diarahkan sekaligus pada individu anggota dan proses kelompok.'},
+{r:'Round 5 — Group Counseling',s:'Linking digunakan untuk menghubungkan pengalaman seorang anggota dengan anggota atau tema kelompok.',a:true,e:'Linking menghubungkan pekerjaan seorang anggota dengan tema bersama kelompok untuk mendorong interaksi dan kohesi.'},
+{r:'Round 5 — Group Counseling',s:'Blocking berarti pemimpin menghentikan anggota yang tidak ia sukai.',a:false,e:'Blocking digunakan untuk menghentikan perilaku kelompok yang kontraproduktif, melindungi anggota, dan menjaga kelancaran proses.'},
+{r:'Round 5 — Group Counseling',s:'Blocking dapat digunakan untuk menghentikan perilaku yang mengganggu atau kontraproduktif dalam kelompok.',a:true,e:'Blocking memang berfungsi menghentikan perilaku kontraproduktif agar proses kelompok tetap aman dan produktif.'},
+{r:'Round 5 — Group Counseling',s:'Pemimpin kelompok sebaiknya selalu menjadi pusat semua interaksi.',a:false,e:'Facilitating justru membuka jalur komunikasi antaranggota dan mendorong anggota mengambil tanggung jawab atas arah kelompok.'},
+{r:'Round 5 — Group Counseling',s:'Fasilitasi bertujuan membantu komunikasi antaranggota berkembang secara lebih langsung.',a:true,e:'Facilitating membuka jalur komunikasi yang jelas dan langsung antaranggota.'},
+{r:'Round 5 — Group Counseling',s:'Cara membuka dan menutup sesi kelompok dapat memengaruhi kualitas proses kelompok.',a:true,e:'Pembukaan memengaruhi suasana sesi, sedangkan penutupan membantu anggota mengonsolidasikan pembelajaran dan proses yang telah berlangsung.'},
+{r:'Round 5 — Group Counseling',s:'Sesi kelompok harus selalu menyelesaikan seluruh masalah sebelum ditutup.',a:false,e:'Sesi tidak harus menuntaskan seluruh isu. Penutupan yang terburu-buru justru dapat mengurangi manfaat proses kelompok.'},
+{r:'Round 5 — Group Counseling',s:'Konseling kelompok membutuhkan keterampilan tambahan karena konselor harus mengelola banyak relasi sekaligus.',a:true,e:'Konseling kelompok menuntut pengelolaan banyak relasi secara simultan serta keterampilan tambahan seperti linking, blocking, facilitating, dan keterampilan membuka-menutup sesi.'}
+];
+
+let index=0, score=0, streak=0, answers=[], locked=false;
+const areas=['Basic Counseling Skills','Empathy & Responding','Action Skills','Mind Skills','Group Counseling'];
+const areaStats={}; areas.forEach(a=>areaStats[a]={correct:0,total:10});
+
+function startGame(){
+  document.getElementById('startScreen').classList.add('hidden');
+  document.getElementById('gameScreen').classList.remove('hidden');
+  renderQuestion();
+}
+function renderQuestion(){
+  locked=false;
+  const q=questions[index];
+  document.getElementById('num').textContent=index+1;
+  document.getElementById('xp').textContent=score;
+  document.getElementById('streak').textContent=streak;
+  document.getElementById('bar').style.width=((index)/questions.length*100)+'%';
+  document.getElementById('round').textContent=q.r;
+  document.getElementById('statement').textContent=q.s;
+  document.getElementById('feedback').className='feedback';
+  document.getElementById('mythBtn').disabled=false;document.getElementById('factBtn').disabled=false;
+}
+function answer(choice){
+  if(locked)return;locked=true;
+  const q=questions[index];
+  const correct=choice===q.a;
+  const area=q.r.split('—')[1].trim();
+  if(correct){score+=20;streak++;areaStats[area].correct++;} else {streak=0;}
+  answers.push({i:index+1,correct});
+  const fb=document.getElementById('feedback');
+  fb.className='feedback '+(correct?'good':'bad');
+  document.getElementById('feedbackTitle').textContent=correct?'Benar — +20 XP':'Belum tepat';
+  document.getElementById('feedbackText').textContent=q.e;
+  document.getElementById('xp').textContent=score;
+  document.getElementById('streak').textContent=streak;
+  document.getElementById('mythBtn').disabled=true;document.getElementById('factBtn').disabled=true;
+  document.getElementById('nextBtn').textContent=index===questions.length-1?'Lihat Hasil':'Lanjut';
+}
+function nextQuestion(){
+  if(index<questions.length-1){index++;renderQuestion();}else{showResult();}
+}
+function showResult(){
+  document.getElementById('bar').style.width='100%';
+  document.getElementById('gameScreen').classList.add('hidden');
+  document.getElementById('resultScreen').classList.remove('hidden');
+  const correct=score/20; const accuracy=Math.round(correct/questions.length*100);
+  const sorted=Object.entries(areaStats).sort((a,b)=>b[1].correct-a[1].correct);
+  document.getElementById('finalXp').textContent=score;
+  document.getElementById('accuracy').textContent=accuracy+'%';
+  document.getElementById('correct').textContent=correct+'/50';
+  document.getElementById('bestArea').textContent=sorted[0][0]+' ('+sorted[0][1].correct+'/10)';
+  document.getElementById('reviewArea').textContent=sorted[sorted.length-1][0]+' ('+sorted[sorted.length-1][1].correct+'/10)';
+}
+function copyResult(){
+  const correct=score/20; const accuracy=Math.round(correct/questions.length*100);
+  const sorted=Object.entries(areaStats).sort((a,b)=>b[1].correct-a[1].correct);
+  const text=`COUNSELING MYTH OR FACT
+Skor: ${score}/1000 XP
+Akurasi: ${accuracy}%
+Benar: ${correct}/50
+Best Area: ${sorted[0][0]} (${sorted[0][1].correct}/10)
+Need Review: ${sorted[sorted.length-1][0]} (${sorted[sorted.length-1][1].correct}/10)`;
+  navigator.clipboard.writeText(text).then(()=>alert('Hasil anonim sudah disalin.'));
+}
+function restartGame(){
+  if(!confirm('Reset progres dan mulai dari awal?')) return;
+  index=0;score=0;streak=0;answers=[];locked=false;
+  areas.forEach(a=>areaStats[a].correct=0);
+  document.getElementById('resultScreen').classList.add('hidden');
+  document.getElementById('gameScreen').classList.add('hidden');
+  document.getElementById('startScreen').classList.remove('hidden');
+}
+</script>
+</body>
+</html>
